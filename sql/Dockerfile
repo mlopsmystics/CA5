@@ -7,6 +7,6 @@ ENV POSTGRES_PASSWORD postgres
 
 RUN mkdir -p /ca4
 
-COPY /main.sql /sql/
+COPY sql/main.sql /sql/
 
 CMD ["postgres", "-D", "/ca4/"]
