@@ -1,9 +1,55 @@
-## Building and Running the Web Server Service
+# MLOPS CA4
 
-### Prerequisites
-- Install Docker on your local machine
+## setup
 
-### Building the Docker Image
-1. Clone this repository: `git clone <repository-url>`
-2. Navigate to the project directory: `cd project`
-3. Build the Docker image:
+### for windows
+
+- create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+- set execution policy
+
+```bash
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+```
+
+- activate the virtual environment
+
+```bash
+venv\Scripts\activate
+```
+
+- install pip
+
+```bash
+python.exe -m pip install --upgrade pip
+```
+
+- run makefile
+
+```bash
+make install
+```
+
+### for linux and mac
+
+- create a virtual environment
+
+```bash
+python3 -m venv venv
+```
+
+- activate the virtual environment
+
+```bash
+source venv/bin/activate
+```
+
+- run makefile
+
+```bash
+make install
+```
