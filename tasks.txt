@@ -1,3 +1,13 @@
+
+Task 1 - 
+Docker Compose File assigned to (i20469) ZahidImran
+
+Task 2 - 
+Web Server Service assigned to (i20512) AliTajir
+
+Task 3 - 
+Database Service assigned to (i21756) Shehzad
 Member - 1: i201756
 
 Make a docker compose file which builds the two services web and db
+
