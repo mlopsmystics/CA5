@@ -4,7 +4,7 @@ on:
   push:
     branches: ["i200469"]
   pull_request:
-    branches: ["i200469"]
+    branches: ["i200469","main"]
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag mlopsmystics:latest
+        run: docker build . --file src/db/Dockerfile --tag mlopsmystics:latest
 
       - name: Push Docker iamge
         run: |
