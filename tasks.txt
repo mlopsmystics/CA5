@@ -1,9 +1,6 @@
 
 Task:
- Create TODO app using sql and flask
-
-DB User: root
-DB Password: root
+ Create TODO app using sql and flas
 
 Task 1 - 
 Docker Compose File assigned to (i201756) Muhammad Shezad
