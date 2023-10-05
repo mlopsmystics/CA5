@@ -11,5 +11,3 @@ VALUES (1, 'Learn Python', 'In Progress'),
 
 
 SELECT * FROM ToDo;
-```
-
