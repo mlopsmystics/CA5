@@ -1,0 +1,17 @@
+
+Task:
+ Create TODO app using sql and flask
+
+DB User: postgres
+DB Password: postgres
+
+Task 1 - 
+Docker Compose File assigned to (i201756) Muhammad Shezad
+
+Task 2 - 
+Web Server Service assigned to (i20512) AliTajir
+
+Task 3 - 
+Database Service assigned to (i20469) ZahidImran
+
+
