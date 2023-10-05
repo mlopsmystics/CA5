@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
       - name: Build the Docker image
-        run: docker build . --file ./sql/Dockerfile --tag mlopsmystics:latest
+        run: docker build . --file Dockerfile --tag mlopsmystics:latest
 
       - name: Push Docker iamge
         run: |
