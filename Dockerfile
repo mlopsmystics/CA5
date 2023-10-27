@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:3.10
 
 RUN mkdir -p /home/app
 
@@ -14,3 +14,5 @@ RUN make install
 
 # Run main.py when the container launches
 CMD ["python", "src/main.py"]
+
+

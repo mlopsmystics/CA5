@@ -1,3 +1,5 @@
+# DockerFile to build my sql image
+
 FROM mysql:latest
 
 EXPOSE 3306
