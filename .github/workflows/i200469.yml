@@ -23,5 +23,6 @@ jobs:
 
       - name: Push Docker iamge
         run: |
+          cd src/db
           docker tag mlopsmystics:latest ${{ secrets.DOCKER_USERNAME }}/ca4_db:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/ca4_db:latest
