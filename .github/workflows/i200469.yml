@@ -19,10 +19,11 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
       - name: Build the Docker image
-        run: docker build . --file src/db/Dockerfile --tag mlopsmystics:latest
+        run: |
+          cd src/db 
+          docker build . --file Dockerfile --tag mlopsmystics:latest
 
       - name: Push Docker iamge
         run: |
-          cd src/db
           docker tag mlopsmystics:latest ${{ secrets.DOCKER_USERNAME }}/ca4_db:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/ca4_db:latest
