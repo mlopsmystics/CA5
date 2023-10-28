@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'docker build-f /src/db/Dockerfile -tag ca4_db .'
+                sh 'docker build-f /src/db/Dockerfile --tag ca4_db .'
             }
         }
 
