@@ -2,7 +2,11 @@ pipeline {
     agent any
 
     stages {
-        
+        stage('Checkout') {
+            steps {
+                git branch: 'i200469', url: 'https://github.com/mlopsmystics/CA5.git'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'docker build -f /src/db/Dockerfile --tag ca4_db .'
