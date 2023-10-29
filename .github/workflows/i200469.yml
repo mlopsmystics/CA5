@@ -2,7 +2,7 @@ name: Docker Image CI to upload DB image
 
 on:
   push:
-    branches: ["i200469"]
+    branches: ["i200469" , "main"]
   pull_request:
     branches: ["i200469","main"]
 
