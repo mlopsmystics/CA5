@@ -1,20 +1,23 @@
 pipeline {
     agent any
+    environment {
+        BACKEND_IMAGE = 'mlopsmystics/backend:latest'
+        MYSQL_ROOT_PASSWORD = 'root'
+        MYSQL_DATABASE = 'TODO'
+    }
 
     stages {
-        stage('Build') {
+        stage('Build and Push Docker Image') {
             steps {
-                sh 'docker build -f /src/db/Dockerfile --tag ca4_db .'
-            }
-        }
-
-        stage('Push') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerHubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'docker login -u $USERNAME -p $PASSWORD'
-                    sh 'docker push ca4_db'
+                script {
+                    // Build and push MySQL Docker image
+                    docker.build("my-mysql-image:${env.BUILD_NUMBER}")
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCredentials') {
+                        docker.image("my-mysql-image:${env.BUILD_NUMBER}").push()
+                    }
                 }
             }
         }
     }
+        
 }
