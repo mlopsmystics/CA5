@@ -4,7 +4,7 @@
 name: i201756 workflow
 on:
   push:
-    branches: ["i201756"]
+    branches: ["i201756" , "main"]
   pull_request:
     branches: ["i201756"]
 
@@ -13,20 +13,22 @@ permissions:
 
 jobs:
   build:
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
+      - name: Docker Login
+        uses: docker/login-action@v3.0.0
         with:
-          python-version: "3.10"
-      - name: Install dependencies
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
+      - name: Build the Docker image
         run: |
-          pip install -r requirements.txt
-      - name: Lint
+          cd src/db 
+          docker build . --file Dockerfile --tag mlopsmystics:latest
+
+      - name: Push Docker iamge
         run: |
-          make lint
-    
+          docker tag mlopsmystics:latest ${{ secrets.DOCKER_USERNAME }}/ca4_web:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ca4_web:latest
