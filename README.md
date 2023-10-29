@@ -2,7 +2,25 @@
 
 ## setup
 
-### for windows
+## Change the folder to build jenkins image
+
+```
+cd DockerFileForJenkins
+```
+
+## Build the Jenkins file using command
+
+```
+docker build --tag jenkinsimage .
+```
+
+## Run the Jenkins Image
+
+```
+docker run --name jenkins -d -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_home:/var/jenkins_home jenkinsimage
+```
+
+### for windows to create env
 
 - create a virtual environment
 
