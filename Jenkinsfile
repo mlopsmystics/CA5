@@ -18,8 +18,8 @@ pipeline {
             steps {
                 script {
                     
-                    def frontendImageExists = sh(script: 'docker pull mlopsmystics/ca4_web', returnStatus: true) == 0
-                    def backendImageExists = sh(script: 'docker pull mlopsmystics/ca4_db', returnStatus: true) == 0
+                    def frontendImageExists = sh(script: 'docker pull mlopsmystics/ca4-web', returnStatus: true) == 0
+                    def backendImageExists = sh(script: 'docker pull mlopsmystics/ca4-db', returnStatus: true) == 0
 
                     if (frontendImageExists && backendImageExists) {
                         sh 'docker-compose up -d'
