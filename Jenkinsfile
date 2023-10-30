@@ -7,7 +7,13 @@ pipeline {
                 checkout scm
             }
         }
-
+        stage('Start Docker Daemon') {
+            steps {
+                script {
+                    sh 'sudo service docker start'
+                }
+            }
+        }
         stage('Run Docker Compose') {
             steps {
                 script {
