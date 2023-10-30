@@ -2,7 +2,7 @@ name: Docker Image CI to upload DB image
 
 on:
   push:
-    branches: ["i200469" , "main"]
+    branches: ["i200469", "i201756" , "main"]
   pull_request:
     branches: ["i200469","main"]
 
@@ -25,5 +25,5 @@ jobs:
 
       - name: Push Docker iamge
         run: |
-          docker tag mlopsmystics:latest ${{ secrets.DOCKER_USERNAME }}/ca4_db:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/ca4_db:latest
+          docker tag mlopsmystics:latest ${{ secrets.DOCKER_USERNAME }}/ca4-db:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ca4-db:latest
