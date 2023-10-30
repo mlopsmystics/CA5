@@ -9,25 +9,40 @@ app = Flask(__name__)
 Todo = None
 
 
-def connect_to_db():
-    if os.environ.get('ENV') is None:
-        os.environ['ENV'] = 'local'
+import time
+import mysql.connector
 
-    if os.environ.get('ENV') == 'container':
-        dbHost = os.environ.get('DB_HOST')
+# Define the function to establish a connection to the database with retry logic
+def connect_to_db_with_retry():
+    max_retries = 5
+    retry_count = 0
+    while retry_count < max_retries:
+        try:
+            if os.environ.get('ENV') is None:
+                os.environ['ENV'] = 'local'
+            if os.environ.get('ENV') == 'container':
+                dbHost = os.environ.get('DB_HOST')
+            if os.environ.get('ENV') == 'local':
+                dbHost = 'localhost'
 
-    if os.environ.get('ENV') == 'local':
-        dbHost = 'localhost'
-    
-    return mysql.connector.connect(
-        host=dbHost,
-        port=3306,
-        user="root",
-        password="root",
-        database="TODO"
-    )
+            db = mysql.connector.connect(
+                host=dbHost,
+                port=3306,
+                user="root",
+                password="root",
+                database="TODO"
+            )
+            return db
+        except mysql.connector.Error as err:
+            print(f"Failed to connect to the database. Retry attempt {retry_count + 1}/{max_retries}")
+            retry_count += 1
+            time.sleep(5)  # Wait for 5 seconds before retrying
+    # If the connection still cannot be established after retries, handle the error appropriately
+    raise Exception("Failed to connect to the database after multiple retries.")
 
-db = connect_to_db()
+# Call the function to establish a connection to the database
+db = connect_to_db_with_retry()
+
 Todo = _Todo(db)
 
 @app.route('/')
