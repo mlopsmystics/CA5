@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'docker build -f /src/db/Dockerfile --tag ca4_db .'
+                sh 'docker build -f src/db/Dockerfile --tag ca4-db .'
             }
         }
 
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh 'docker login -u $USERNAME -p $PASSWORD'
-                    sh 'docker push ca4_db'
+                    sh 'docker push ca4-db'
                 }
             }
         }
